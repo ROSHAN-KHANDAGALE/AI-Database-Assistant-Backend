@@ -139,6 +139,13 @@ backend/
 
 ---
 
+## Frontend Code URL:
+```
+https://github.com/ROSHAN-KHANDAGALE/AI-Database-Assistant-Frontend
+```
+
+---
+
 ## Interactive API Docs
 
 Once running, visit:

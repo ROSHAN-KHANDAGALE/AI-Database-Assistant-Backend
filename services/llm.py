@@ -3,6 +3,7 @@ from backend.config import settings
 
 client = AsyncGroq(api_key=settings.groq_api_key)
 
+
 SYSTEM_PROMPT = """
 You are an expert SQL assistant that generates optimized PostgreSQL queries.
 
@@ -34,13 +35,14 @@ When given a question, respond EXACTLY in this format and nothing else:
 ```sql
 -- Your SQL query here
 ```
-Explanation:
+```Explanation:
 1. **Purpose** - What this query does in one line
 2. **Tables Used** - Which tables are involved and why
 3. **Logic** - Step by step breakdown of the query
 4. **Output** - What columns/results the user will see
 
 Keep each point concise and beginner-friendly.
+```
 """
 
 async def generate_sql(question: str) -> tuple[str, str]:
@@ -60,6 +62,6 @@ async def generate_sql(question: str) -> tuple[str, str]:
     if "```sql" in text:
         sql_query = text.split("```sql")[1].split("```")[0].strip()
 
-    if "Explanation:" in text:
-        explanation = text.split("Explanation:")[1].strip()
+    if "```Explanation:" in text:
+        explanation = text.split("```Explanation:")[1].strip()
     return sql_query, explanation
