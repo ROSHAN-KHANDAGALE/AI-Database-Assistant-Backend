@@ -5,4 +5,3 @@ asyncpg
 groq
 python-dotenv
 pydantic-settings
-psycopg2-binary

@@ -1,5 +1,7 @@
-from pydantic_settings import BaseSettings
 from pathlib import Path
+
+from pydantic_settings import BaseSettings
+
 
 class Settings(BaseSettings):
     groq_api_key: str
@@ -8,7 +10,9 @@ class Settings(BaseSettings):
     model_name: str
 
     model_config = {
-        "env_file": Path(__file__).parent / ".env.local"
+        "env_file": Path(__file__).parent / ".env.local",
+        "extra": "ignore",
     }
+
 
 settings = Settings()
