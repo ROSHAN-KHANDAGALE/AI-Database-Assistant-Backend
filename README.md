@@ -60,3 +60,17 @@ uvicorn backend.main:app --reload
 The API receives schema metadata from the browser. It stores only the submitted natural-language question and timestamp in `user_inputs`. It does not store schema metadata, uploaded SQL files, row data, or generated SQL. It does not accept database credentials for the user's data source.
 
 Interactive API documentation is available at `http://localhost:8000/docs`.
+
+
+## Contributing and repository policies
+
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Security Policy](./SECURITY.md)
+- [Bug Report](./.github/ISSUE_TEMPLATE/bug_report.md)
+- [Feature Request](./.github/ISSUE_TEMPLATE/feature_request.md)
+- [Pull Request Template](./.github/PULL_REQUEST_TEMPLATE.md)
+
+## License
+
+No license has been selected for this repository. Until a license is added, do not assume permission to use, modify, or redistribute the code.
