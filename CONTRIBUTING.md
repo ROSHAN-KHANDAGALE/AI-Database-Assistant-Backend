@@ -17,6 +17,7 @@ Follow the [local setup instructions](./README.md#run-locally) in the README. In
 - Keep changes focused and consistent with the existing Python and React patterns.
 - Add or update tests for behavior changes.
 - Update relevant documentation when setup, API behavior, or privacy behavior changes.
+- Process pasted schema definitions locally and send only extracted table and column metadata.
 - Do not add dependencies unless they are needed for the change.
 - Keep generated SQL read-only and do not add execution against user databases without a separately reviewed design.
 
@@ -33,6 +34,12 @@ For backend changes, also run Python compilation from the project root:
 
 ```powershell
 python -m compileall -q backend
+```
+
+Run backend model tests with:
+
+```powershell
+python -m unittest discover -s backend\tests
 ```
 
 Include the commands you ran and their results in your pull request.

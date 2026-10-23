@@ -1,6 +1,6 @@
 # SQL Query Assistant API
 
-FastAPI service for generating read-only SQL from a natural-language question and a supplied schema. Its PostgreSQL database stores submitted natural-language questions and their submission timestamps. It does not execute generated SQL or store schema metadata, uploaded SQL files, or generated SQL.
+FastAPI service for generating read-only SQL from a natural-language question and schema metadata extracted in the browser. Its PostgreSQL database stores submitted natural-language questions, UUIDs, and timestamps. It does not execute generated SQL or store schema metadata, uploaded SQL files, pasted source, or generated SQL.
 
 ## Requirements
 
@@ -27,7 +27,9 @@ MODEL_NAME=your_groq_model_name
 ALLOWED_ORIGINS=["http://localhost:3000"]
 ```
 
-Create the PostgreSQL database named in `DATABASE_URL` before starting the API. On startup, the API creates a `user_inputs` table with an ID, the submitted question, and a timestamp.
+Create the PostgreSQL database named in `DATABASE_URL` before starting the API. On startup, the API creates a `user_inputs` table with a UUID primary key, the submitted question, and a timestamp.
+
+`create_all()` creates a missing table but does not alter an existing table. Back up and migrate older installations with an integer `user_inputs.id` before using the UUID model; the migration script is not currently included.
 
 Start the API from the project root:
 
@@ -57,9 +59,9 @@ uvicorn backend.main:app --reload
 }
 ```
 
-The API receives schema metadata from the browser. It stores only the submitted natural-language question and timestamp in `user_inputs`. It does not store schema metadata, uploaded SQL files, row data, or generated SQL. It does not accept database credentials for the user's data source.
+The API receives schema metadata extracted from an uploaded SQL file or pasted model source in the browser. The app stores only the submitted natural-language question, UUID, and timestamp in `user_inputs`. It does not store schema metadata, uploaded files, pasted source, row data, or generated SQL. It does not accept database credentials for the user's data source.
 
-Interactive API documentation is available at `http://localhost:8000/docs`.
+Interactive API documentation is available at `http://localhost:8000/docs`. Database save failures return HTTP 503, and SQL-generation provider failures return HTTP 502. The backend terminal logs include the underlying exception.
 
 
 ## Contributing and repository policies

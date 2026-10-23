@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend import models
 from backend.config import settings
 from backend.db import Base, engine
 from backend.routers import queries
